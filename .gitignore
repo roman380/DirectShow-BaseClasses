@@ -1,0 +1,6 @@
+*.bak
+*.user
+.vs
+/baseclasses/baseclasses.sln
+/baseclasses/BaseClasses.vcxproj
+/baseclasses/BaseClasses.vcxproj.filters
