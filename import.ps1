@@ -5,6 +5,7 @@ $RepositoryPath = "$BasePath\."
 #       we are interested in branch "directshow" with the actual DirectShow and BaseClasses code.
 #       BaseClasses are assumed to be built there and we just import the pre-built static libraries
 #       here to track them in this repository and expose detached from huge repository with samples.
+#       See https://github.com/roman380/Windows-classic-samples/tree/directshow/Samples/Win7Samples/multimedia/directshow
 
 $SourcePath = "$RepositoryPath\..\Windows-classic-samples\Samples\Win7Samples\multimedia\directshow"
 
