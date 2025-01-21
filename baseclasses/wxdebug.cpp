@@ -7,8 +7,9 @@
 // Copyright (c) 1992-2001 Microsoft Corporation.  All rights reserved.
 //------------------------------------------------------------------------------
 
-
+#if !defined(_WINDLL)
 #define _WINDLL
+#endif
 
 #include <streams.h>
 #include <stdarg.h>
@@ -734,7 +735,7 @@ void WINAPI DbgLogInfo(DWORD Type,DWORD Level,__format_string LPCSTR pFormat,...
     CHAR szInfoA[2000];
     WideCharToMultiByte(CP_ACP, 0, szInfo, -1, szInfoA, NUMELMS(szInfoA), 0, 0);
 
-    sprintf_s(szInfoA + lstrlenA(szInfoA), NUMELMS(szInfoA) - lstrlenA(szInfoA), pFormat, va);
+    vsprintf_s(szInfoA + lstrlenA(szInfoA), NUMELMS(szInfoA) - lstrlenA(szInfoA), pFormat, va);
     strcat_s(szInfoA, NUMELMS(szInfoA), "\r\n");
 
     WCHAR wszOutString[2000];
@@ -859,7 +860,7 @@ void WINAPI DbgLogInfo(DWORD Type,DWORD Level,LPCTSTR pFormat,...)
              m_ModuleName,
              GetCurrentThreadId(), timeGetTime() - dwTimeOffset);
 
-    _stprintf_s(szInfo + lstrlen(szInfo), NUMELMS(szInfo) - lstrlen(szInfo), pFormat, va);
+    _vstprintf_s(szInfo + lstrlen(szInfo), NUMELMS(szInfo) - lstrlen(szInfo), pFormat, va);
     _tcscat_s(szInfo, NUMELMS(szInfo), TEXT("\r\n"));
     DbgOutString(szInfo);
 

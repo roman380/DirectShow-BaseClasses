@@ -556,6 +556,7 @@ __out_opt IMediaSample * CTransInPlaceFilter::Copy(IMediaSample *pSource)
             long lSourceSize  = pSource->GetSize();
             long lDestSize = pDest->GetSize();
 
+            DBG_UNREFERENCED_LOCAL_VARIABLE(lSourceSize);
             ASSERT(lDestSize >= lSourceSize && lDestSize >= lDataLength);
 
             if (FAILED(pSource->GetPointer(&pSourceBuffer)) ||
@@ -768,7 +769,7 @@ CTransInPlaceInputPin::NotifyAllocator(
             hr = E_FAIL;
         } else if(SUCCEEDED(hr)) {
             //  Must copy so set the allocator properties on the output
-            ALLOCATOR_PROPERTIES Props, Actual;
+            ALLOCATOR_PROPERTIES Props, Actual { };
             hr = pAllocator->GetProperties(&Props);
             if (SUCCEEDED(hr)) {
                 hr = pOutputAllocator->SetProperties(&Props, &Actual);
